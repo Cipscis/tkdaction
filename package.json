@@ -1,0 +1,16 @@
+{
+  "name": "tkdaction",
+  "version": "1.0.0",
+  "description": "Generates static redirects to Google Photos albums based off a CSV",
+  "main": "server.js",
+  "scripts": {
+    "start": "node build/build.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/Cipscis/tkdaction.git"
+  }
+}
