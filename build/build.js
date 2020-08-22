@@ -31,7 +31,7 @@ const Build = {
 		let albumPath = csvRow[0];
 		let redirectTo = csvRow[1];
 
-		albumPath = './' + albumPath.replace(/\\/g, '/');
+		albumPath = './' + albumPath.replace(/\\/g, '/').toLowerCase();
 
 		fs.mkdir(
 			albumPath,
