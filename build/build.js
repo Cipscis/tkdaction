@@ -28,26 +28,28 @@ const Build = {
 	},
 
 	_createRedirect: function (csvRow) {
-		let albumPath = csvRow[0];
+		let redirectFrom = csvRow[0];
 		let redirectTo = csvRow[1];
 
-		albumPath = './' + albumPath.replace(/\\/g, '/').toLowerCase();
+		let redirectPath = redirectFrom.replace(/^https?:\/\/(\w+\.)?\w+\.\w+/, '');
+
+		redirectPath = './' + redirectPath.replace(/\\/g, '/').toLowerCase();
 
 		fs.mkdir(
-			albumPath,
+			redirectPath,
 			{ recursive: true },
-			Build._createRedirectFile(albumPath, redirectTo)
+			Build._createRedirectFile(redirectPath, redirectTo)
 		);
 	},
 
-	_createRedirectFile: function (albumPath, redirectTo) {
+	_createRedirectFile: function (redirectPath, redirectTo) {
 		return function (error) {
 			if (error) {
 				throw error;
 			} else {
 				let fileContents = Build._createRedirectFileContents(redirectTo);
 
-				fs.writeFile(albumPath + '/index.html', fileContents, Build._redirectCreated);
+				fs.writeFile(redirectPath + '/index.html', fileContents, Build._redirectCreated);
 			}
 		};
 	},
